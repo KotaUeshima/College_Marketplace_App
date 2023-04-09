@@ -6,14 +6,36 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            let isLoggedIn = user != nil
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            let window = UIWindow(frame: UIScreen.main.bounds)
+//
+//            if isLoggedIn{
+//                let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBar")
+//
+//                window.rootViewController = tabBar
+//                window.makeKeyAndVisible()
+//            } else {
+//                let loginNav = storyboard.instantiateViewController(withIdentifier: "LoginNavigation")
+//
+//                window.rootViewController = loginNav
+//                window.makeKeyAndVisible()            }
+//        }
+        
         return true
     }
 

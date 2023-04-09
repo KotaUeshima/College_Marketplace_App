@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "429FE3C6-DE9D-476B-ACA2-D3C814C449C6"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "572F5956-E7BE-4234-96E9-40820009D116"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CollegeMarketplace/Model/CustomTextField.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "init?(coder:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "572F5956-E7BE-4234-96E9-40820009D116 - 6fbc6d54997f4ff5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CollegeMarketplace.CustomTextField.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CollegeMarketplace.CustomTextField&gt;"
+                  moduleName = "CollegeMarketplace"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kotaueshima/Desktop/Senior/ITP%20342/CollegeMarketplace/CollegeMarketplace/Model/CustomTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  uuid = "572F5956-E7BE-4234-96E9-40820009D116 - f5653b2a455bd14"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CollegeMarketplace.CustomTextField.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CollegeMarketplace.CustomTextField&gt;"
+                  moduleName = "CollegeMarketplace"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kotaueshima/Desktop/Senior/ITP%20342/CollegeMarketplace/CollegeMarketplace/Model/CustomTextField.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "58">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0D158ED-1980-4B0C-B6B6-994557C5114E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CollegeMarketplace/Controller/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
