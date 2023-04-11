@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     
+    @IBOutlet weak var addPostButton: CustomButton!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func signOutButton(_ sender: Any) {
@@ -77,7 +79,10 @@ class ProfileViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let addProductVC = segue.destination as? PostItemViewController{
             addProductVC.onComplete = {
-                self.collectionView.reloadData()
+                self.shared.getMyProducts(onSuccess: {
+                    products in
+                    self.collectionView.reloadData()
+                })
             }
         }
     }

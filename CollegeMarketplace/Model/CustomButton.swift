@@ -16,6 +16,6 @@ class CustomButton: UIButton{
     }
     
     func customizeButton(){
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = 8
     }
 }
