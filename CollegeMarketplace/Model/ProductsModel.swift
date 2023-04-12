@@ -48,7 +48,7 @@ class ProductsModel{
                         if error == nil && data != nil{
                             // create product if photo is succesfully retrieved
                             image = UIImage(data: data!)!
-                            let new = Product(name: document.data()["name"] as! String, price: document.data()["price"] as! String, condition: document.data()["condition"] as! String, image: image)
+                            let new = Product(name: document.data()["name"] as! String, price: document.data()["price"] as! String, condition: document.data()["condition"] as! String, address: document.data()["address"] as! String, image: image)
                             self.products.append(new)
                             onSuccess(self.products)
                         }
@@ -60,6 +60,10 @@ class ProductsModel{
                 }
             }
         }
+    }
+    
+    func insert(product: Product){
+        products.append(product)
     }
 
     func clearProducts(){

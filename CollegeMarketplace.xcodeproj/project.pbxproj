@@ -31,6 +31,9 @@
 		FBA8FC8629E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
 		FBA8FC8729E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
 		FBA8FC8829E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
+		FBB4D56129E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
+		FBB4D56229E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
+		FBB4D56329E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
 		FBE40A9129DC8335003B45A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE40A9029DC8335003B45A3 /* AppDelegate.swift */; };
 		FBE40A9329DC8335003B45A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE40A9229DC8335003B45A3 /* SceneDelegate.swift */; };
 		FBE40A9529DC8335003B45A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE40A9429DC8335003B45A3 /* ViewController.swift */; };
@@ -75,6 +78,7 @@
 		FB8DDEBA29E0955300D9C051 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FB8DDEBE29E0E60500D9C051 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItemTextField.swift; sourceTree = "<group>"; };
+		FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		FBE40A8D29DC8335003B45A3 /* CollegeMarketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeMarketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE40A9029DC8335003B45A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBE40A9229DC8335003B45A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				FBE40AC829DCBEE3003B45A3 /* HomeViewController.swift */,
 				FB7ABDCF29DE3520000CB875 /* ProfileViewController.swift */,
 				FB8DDEA829DE482100D9C051 /* PostItemViewController.swift */,
+				FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB7ABDD029DE3520000CB875 /* ProfileViewController.swift in Sources */,
+				FBB4D56129E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */,
 				FB8DDEBB29E0955300D9C051 /* CustomTextField.swift in Sources */,
 				FB8DDEB329DF456900D9C051 /* ProductsModel.swift in Sources */,
 				FB8DDEA929DE482100D9C051 /* PostItemViewController.swift in Sources */,
@@ -381,6 +387,7 @@
 				FB8DDEAA29DE482100D9C051 /* PostItemViewController.swift in Sources */,
 				FB8DDEC029E0E60500D9C051 /* CustomButton.swift in Sources */,
 				FB7ABDD129DE3520000CB875 /* ProfileViewController.swift in Sources */,
+				FBB4D56229E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */,
 				FB8DDEAE29DF387300D9C051 /* ProductCollectionViewCell.swift in Sources */,
 				FBE40ACA29DCBEE4003B45A3 /* HomeViewController.swift in Sources */,
 			);
@@ -393,6 +400,7 @@
 				FBE40AC729DCB951003B45A3 /* SignUpViewController.swift in Sources */,
 				FBE40AB429DC8338003B45A3 /* CollegeMarketplaceUITestsLaunchTests.swift in Sources */,
 				FBA8FC8829E4DEF40079F32F /* PostItemTextField.swift in Sources */,
+				FBB4D56329E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */,
 				FB8DDEC129E0E60500D9C051 /* CustomButton.swift in Sources */,
 				FB8DDEAF29DF387300D9C051 /* ProductCollectionViewCell.swift in Sources */,
 				FB7ABDD229DE3520000CB875 /* ProfileViewController.swift in Sources */,

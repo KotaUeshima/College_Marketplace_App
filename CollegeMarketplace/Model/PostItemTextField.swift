@@ -17,13 +17,11 @@ class PostItemTextField: UITextField{
     }
     
     func customizeTextField(){
-        // apply shadow
-//        self.layer.shadowOpacity = 0.6
-//        self.layer.shadowRadius = 3.0
-//        self.layer.shadowOffset = CGSize.zero
-//        self.layer.shadowColor = UIColor.gray.cgColor
-        
         // corner radius
         self.layer.cornerRadius = 8
+        
+        // apply colored outline
+        self.layer.borderWidth = 0.1
+        self.layer.borderColor = UIColor.systemPink.cgColor
     }
 }

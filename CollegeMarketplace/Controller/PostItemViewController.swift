@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class PostItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class PostItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate  {
     
     @IBOutlet weak var nameTextField: PostItemTextField!
     
@@ -22,6 +22,10 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     
     @IBOutlet weak var selectedImage: UIImageView!
     
+    @IBOutlet weak var submitButton: CustomButton!
+    
+    @IBOutlet weak var errorLabel: UILabel!
+    
     var onComplete: (() -> Void)?
     
     let userId = Auth.auth().currentUser?.uid
@@ -29,6 +33,19 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         createInitialImage()
+        
+        // hide error label
+        errorLabel.alpha = 0
+        errorLabel.text = ""
+        
+        // set textfield delegates
+        nameTextField.delegate = self
+        priceTextField.delegate = self
+        addressTextField.delegate = self
+        conditionTextField.delegate = self
+        // disable button on load and change color
+        submitButton.isEnabled = false
+        submitButton.alpha = 0.5
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         selectedImage.isUserInteractionEnabled = true
@@ -39,9 +56,9 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         selectedImage.image = UIImage(systemName: "plus.circle")
         selectedImage.tintColor = .black
         selectedImage.layer.cornerRadius = 8
+        selectedImage.layer.borderWidth = 0.1
+        selectedImage.layer.borderColor = UIColor.systemPink.cgColor
         selectedImage.contentMode = .center
-        selectedImage.layer.borderWidth = 1
-        selectedImage.layer.borderColor = UIColor.black.cgColor
     }
     
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -109,4 +126,19 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         navigationController?.popViewController(animated: true)
     }
     
+    // Enable or Disable Submit Button
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        enableOrDisableButton()
+    }
+    
+    func enableOrDisableButton(){
+        if !nameTextField.text!.isEmpty && !priceTextField.text!.isEmpty && !addressTextField.text!.isEmpty && !conditionTextField.text!.isEmpty{
+            submitButton.isEnabled = true
+            submitButton.alpha = 1
+        }
+        else{
+            submitButton.isEnabled = false
+            submitButton.alpha = 0.5
+        }
+    }
 }

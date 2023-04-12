@@ -12,5 +12,6 @@ struct Product{
     let name: String
     let price: String
     let condition: String
+    let address: String
     let image: UIImage
 }

@@ -14,10 +14,11 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productName: UILabel!
     
     @IBOutlet weak var productPrice: UILabel!
-    
+
     func setup(with product: Product){
         productImage.image = product.image
+        productImage.layer.cornerRadius = 8
         productName.text = product.name
-        productPrice.text = product.price
+        productPrice.text = "$\(product.price)"
     }
 }

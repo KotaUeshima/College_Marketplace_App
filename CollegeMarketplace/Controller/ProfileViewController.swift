@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
     
-    @IBOutlet weak var addPostButton: CustomButton!
+    @IBOutlet weak var addPostButton: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -35,6 +35,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // make button round
+        addPostButton.layer.cornerRadius = addPostButton.frame.height / 2
         
         // get first name and last name to display on profile
         if let userId = userId{
@@ -77,6 +80,7 @@ class ProfileViewController: UIViewController {
     
     // allow collection view to reload once data is added
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // currently not working
         if let addProductVC = segue.destination as? PostItemViewController{
             addProductVC.onComplete = {
                 self.shared.getMyProducts(onSuccess: {
@@ -85,7 +89,19 @@ class ProfileViewController: UIViewController {
                 })
             }
         }
+        
+        // send information to postDetailVC
+        if let postDetailVC = segue.destination as? PostDetailViewController{
+            let selectedRow = collectionView.indexPathsForSelectedItems!.first!.row
+            let selectedProduct = shared.products[selectedRow]
+            postDetailVC.selectedImage = selectedProduct.image
+            postDetailVC.name = selectedProduct.name
+            postDetailVC.condition = selectedProduct.condition
+            postDetailVC.price = selectedProduct.price
+            postDetailVC.address = selectedProduct.address
+        }
     }
+
 }
 
 // code for UICollectionView not Controller
@@ -110,6 +126,9 @@ extension ProfileViewController:
 extension ProfileViewController:
     UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 120)
+        
+        // width of current view controller
+        let width = self.view.bounds.width
+        return CGSize(width: (width / 2) - 40, height: 150)
     }
 }
