@@ -13,9 +13,14 @@ import UIKit
 
 class ProductsModel{
     
+    //refer to my products
     var products: [Product]
+    // all products for home page
+    var allProducts: [Product]
+    // where items are located in firebase
     let itemsCollection = Firestore.firestore().collection("items")
     
+    // singleton
     static let sharedInstance = ProductsModel()
     
     // function to get products for the current user
@@ -62,15 +67,51 @@ class ProductsModel{
         }
     }
     
-    func insert(product: Product){
-        products.append(product)
+    func getAllProducts(onSuccess: @escaping ([Product]) -> Void){
+        
+        itemsCollection.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting all the items")
+                print(error.localizedDescription)
+            }
+            else{
+                for document in snapshot!.documents {
+                    // first grab image
+                    let imagePath = document.data()["imageUrl"] as! String
+                    let storageRef = Storage.storage().reference()
+                    let fileRef = storageRef.child(imagePath)
+                    var image: UIImage?
+                    
+                    fileRef.getData(maxSize: 5 * 1024 * 1024, completion: {
+                        (data, error) in
+                        
+                        
+                        if error == nil && data != nil{
+                            image = UIImage(data: data!)!
+                            let new = Product(name: document.data()["name"] as! String, price: document.data()["price"] as! String, condition: document.data()["condition"] as! String, address: document.data()["address"] as! String, image: image!)
+                            self.allProducts.append(new)
+                        }
+                        else{
+                            print("Couldn't retrieve photo from Firebase Storage")
+                            print("Error: \(error!.localizedDescription)")
+                        }
+                    })
+                }
+                onSuccess(self.allProducts)
+            }
+        }
     }
-
+    
+    func search(search: String){
+        
+    }
+    
     func clearProducts(){
         products.removeAll()
     }
     
     init() {
         products = []
+        allProducts = []
     }
 }

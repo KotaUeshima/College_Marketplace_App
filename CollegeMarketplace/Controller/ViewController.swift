@@ -34,6 +34,12 @@ class ViewController: UIViewController, UITextFieldDelegate{
         
         emailTextField.addImage(image: UIImage(systemName: "envelope")!)
         passwordTextField.addImage(image: UIImage(systemName: "lock")!)
+        
+        ProductsModel.sharedInstance.getAllProducts(onSuccess: {
+            products in
+            print("Login View Controller")
+            print(products)
+        })
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
@@ -57,7 +63,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
 
     }
     
-    // Enable or Disable Submit Button
+    // Enable/Disable Submit Button
     func textFieldDidChangeSelection(_ textField: UITextField) {
         enableOrDisableButton()
     }
@@ -73,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
-    // Transition to home screen
+    // Transition to Home Screen
     func goToHomeScreen(){
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "TabBar")
         

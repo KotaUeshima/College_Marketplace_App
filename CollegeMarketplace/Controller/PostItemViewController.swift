@@ -6,17 +6,20 @@
 //
 
 import UIKit
+import MapKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 
-class PostItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate  {
+class PostItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, MKLocalSearchCompleterDelegate  {
     
     @IBOutlet weak var nameTextField: PostItemTextField!
     
     @IBOutlet weak var priceTextField: PostItemTextField!
     
     @IBOutlet weak var addressTextField: PostItemTextField!
+    
+    @IBOutlet weak var searchTableView: UITableView!
     
     @IBOutlet weak var conditionTextField: PostItemTextField!
     
@@ -29,6 +32,10 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     var onComplete: (() -> Void)?
     
     let userId = Auth.auth().currentUser?.uid
+    
+    var completer = MKLocalSearchCompleter()
+    
+    var searchResults = [MKLocalSearchCompletion]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +54,28 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         submitButton.isEnabled = false
         submitButton.alpha = 0.5
         
+        // add tap gesture for UIImage
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         selectedImage.isUserInteractionEnabled = true
         selectedImage.addGestureRecognizer(tapGestureRecognizer)
+        
+        // auto complete object
+        completer.delegate = self
+        
+        // table view delegation
+        searchTableView.dataSource = self
+        searchTableView.delegate = self
+    }
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results
+        print("How many results is coming >>> \(completer.results.count)")
+        searchTableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        print("Error with auto completion")
+        print(error)
     }
     
     func createInitialImage(){
@@ -129,6 +155,20 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     // Enable or Disable Submit Button
     func textFieldDidChangeSelection(_ textField: UITextField) {
         enableOrDisableButton()
+        
+        // changing query for completer
+        if textField == addressTextField{
+            if let text = addressTextField.text{
+                completer.queryFragment = text
+            }
+        }
+        
+        if !textField.text!.isEmpty{
+            textField.layer.borderWidth = 0.5
+        }
+        else{
+            textField.layer.borderWidth = 0.1
+        }
     }
     
     func enableOrDisableButton(){
@@ -140,5 +180,40 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
             submitButton.isEnabled = false
             submitButton.alpha = 0.5
         }
+    }
+}
+
+extension PostItemViewController: UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchResults.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let currentSearch = searchResults[indexPath.row]
+        
+        // Configure the cell’s contents.
+        cell.textLabel!.text = currentSearch.title
+        cell.detailTextLabel?.text = currentSearch.subtitle
+            
+        return cell
+    }
+    
+}
+
+extension PostItemViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let result = searchResults[indexPath.row]
+        
+        // change text field cell to result and then reload tableview
+        addressTextField.text = result.title
+        searchResults = [MKLocalSearchCompletion]()
+        searchTableView.reloadData()
+        
     }
 }
