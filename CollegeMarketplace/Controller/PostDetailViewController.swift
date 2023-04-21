@@ -37,7 +37,6 @@ class PostDetailViewController: UIViewController{
         applyLabel(conditionLabel, condition)
         applyLabel(priceLabel, price)
         applyLabel(addressLabel, address)
-
     }
     
     func applyLabel(_ label: UILabel,_ text: String?){

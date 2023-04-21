@@ -11,9 +11,9 @@ import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     
-    let userId = Auth.auth().currentUser?.uid
+    let user = UserService.sharedInstance
     
-    let shared = ProductsModel.sharedInstance
+    let product = ProductService.sharedInstance
     
     @IBOutlet weak var usernameLabel: UILabel!
     
@@ -23,13 +23,12 @@ class ProfileViewController: UIViewController {
     
     @IBAction func signOutButton(_ sender: Any) {
         do{
-            try Auth.auth().signOut()
-            shared.clearProducts()
+            try user.logout()
             goToLoginScreen()
         }
         catch{
-            // show error, maybe show an alert
             print("Could not sign out")
+            print(error.localizedDescription)
         }
     }
     
@@ -38,62 +37,33 @@ class ProfileViewController: UIViewController {
         
         // make button round
         addPostButton.layer.cornerRadius = addPostButton.frame.height / 2
+        self.usernameLabel.text = user.getFullName()
         
-        // get first name and last name to display on profile
-        if let userId = userId{
-            let userDocument = Firestore.firestore().collection("users").document(userId)
-            
-            userDocument.getDocument(completion: {
-                (snapshot, error) in
-                if error != nil{
-                    print(error!.localizedDescription)
-                }
-                else{
-                    if let data = snapshot?.data(){
-                        let firstName = data["firstName"] as! String
-                        let lastName = data["lastName"] as! String
-                        self.usernameLabel.text = "\(firstName) \(lastName)"
-                    }
-                }
-            })
-        }
-        else{
-            print("Could not get userId")
-        }
-        
-        shared.getMyProducts(onSuccess: {
+        product.getUserProducts(onSuccess: {
             products in
             self.collectionView.reloadData()
         })
         
+        // set delegates for collectionView
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
     }
     
-    // go to login screen
-    func goToLoginScreen(){
-        let loginNav = storyboard?.instantiateViewController(withIdentifier: "LoginNavigation")
-        view.window?.rootViewController = loginNav
-        view?.window?.makeKeyAndVisible()
-    }
-    
-    // allow collection view to reload once data is added
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // currently not working
+        // reload data once a product is added
         if let addProductVC = segue.destination as? PostItemViewController{
             addProductVC.onComplete = {
-                self.shared.getMyProducts(onSuccess: {
+                self.product.getUserProducts(onSuccess: {
                     products in
                     self.collectionView.reloadData()
                 })
             }
         }
-        
         // send information to postDetailVC
         if let postDetailVC = segue.destination as? PostDetailViewController{
             let selectedRow = collectionView.indexPathsForSelectedItems!.first!.row
-            let selectedProduct = shared.products[selectedRow]
+            let selectedProduct = product.userAt(index: selectedRow)
             postDetailVC.selectedImage = selectedProduct.image
             postDetailVC.name = selectedProduct.name
             postDetailVC.condition = selectedProduct.condition
@@ -101,33 +71,33 @@ class ProfileViewController: UIViewController {
             postDetailVC.address = selectedProduct.address
         }
     }
-
+    
+    func goToLoginScreen(){
+        let loginNav = storyboard?.instantiateViewController(withIdentifier: "LoginNavigation")
+        view.window?.rootViewController = loginNav
+        view?.window?.makeKeyAndVisible()
+    }
 }
 
-// code for UICollectionView not Controller
 extension ProfileViewController:
     UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // return how many total items
-        return shared.products.count
+        return product.numberOfUserProducts()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as! ProductCollectionViewCell
-        
-        cell.setup(with: shared.products[indexPath.row])
-        
+        cell.setup(with: product.userAt(index: indexPath.row))
         return cell
     }
 }
 
-// Constraints for size of each cell
+// constraints for each cell
 extension ProfileViewController:
     UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        // width of current view controller
         let width = self.view.bounds.width
         return CGSize(width: (width / 2) - 40, height: 150)
     }

@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 
+// This is the LoginViewController not sure how to change name
 class ViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var emailTextField: CustomTextField!
@@ -21,68 +22,77 @@ class ViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // hide error label
-        errorLabel.alpha = 0
-        // disable login button
-        loginButton.isEnabled = false
-        loginButton.alpha = 0.5
+        hideErrorLabel()
+        disableLoginButton()
         
-        // assign delegates
+        // assign delegates for textfield
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
-        
+        // add left images for custom text fields
         emailTextField.addImage(image: UIImage(systemName: "envelope")!)
         passwordTextField.addImage(image: UIImage(systemName: "lock")!)
         
-        ProductsModel.sharedInstance.getAllProducts(onSuccess: {
-            products in
-            print("Login View Controller")
-            print(products)
+        // fetch all products
+        ProductService.sharedInstance.getAllProducts(onSuccess: {
+            allProducts in
+            print("Loaded in all products")
         })
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        
-        errorLabel.alpha = 0
-        errorLabel.text = ""
+        hideErrorLabel()
         
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            
-            if error != nil{
-                self.errorLabel.alpha = 1
-                self.errorLabel.text = error!.localizedDescription
-            }
-            else{
-                self.goToHomeScreen()
+        // async/await
+        Task {
+            do {
+                try await UserService.sharedInstance.login(email: email, password: password)
+                DispatchQueue.main.async {
+                    self.goToHomeScreen()
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorLabel.alpha = 1
+                    self.errorLabel.text = error.localizedDescription
+                }
             }
         }
-
     }
     
-    // Enable/Disable Submit Button
+    // Function called everytime user types in one of the textfields
     func textFieldDidChangeSelection(_ textField: UITextField) {
         enableOrDisableButton()
     }
     
     func enableOrDisableButton(){
         if !emailTextField.text!.isEmpty && !passwordTextField.text!.isEmpty{
-            loginButton.isEnabled = true
-            loginButton.alpha = 1
+            enableLoginButton()
         }
         else{
-            loginButton.isEnabled = false
-            loginButton.alpha = 0.5
+            disableLoginButton()
         }
+    }
+    
+    func enableLoginButton(){
+        loginButton.isEnabled = true
+        loginButton.alpha = 1
+    }
+    
+    func disableLoginButton(){
+        loginButton.isEnabled = false
+        loginButton.alpha = 0.5
+    }
+    
+    func hideErrorLabel(){
+        errorLabel.alpha = 0
+        errorLabel.text = ""
     }
     
     // Transition to Home Screen
     func goToHomeScreen(){
         let tabBar = storyboard?.instantiateViewController(withIdentifier: "TabBar")
-        
         view.window?.rootViewController = tabBar
         view?.window?.makeKeyAndVisible()
     }

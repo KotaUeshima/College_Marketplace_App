@@ -108,22 +108,15 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     @IBAction func submitButtonTapped(_ sender: CustomButton) {
         
         let name = nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         let price = priceTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         let address = addressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         let condition = conditionTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // upload photo
-        
         let storageRef = Storage.storage().reference()
-        
         let image = selectedImage.image?.jpegData(compressionQuality: 0.8)
-        
         let path = "images/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)
-        
         let itemCollection = Firestore.firestore().collection("items")
         
         // upload to firestore storage
@@ -137,6 +130,10 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
             }
             
         })
+        
+        let addition = Product(name: name, price: price, condition: condition, address: address, image: (selectedImage?.image)!, userId: userId!)
+        
+        ProductService.sharedInstance.insert(product: addition)
         
         // add document with imageUrl
         itemCollection.addDocument(data: [

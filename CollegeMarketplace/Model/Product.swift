@@ -14,4 +14,5 @@ struct Product{
     let condition: String
     let address: String
     let image: UIImage
+    let userId: String
 }
