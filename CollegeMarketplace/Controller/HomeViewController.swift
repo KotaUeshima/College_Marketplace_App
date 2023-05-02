@@ -25,9 +25,29 @@ class HomeViewController: UIViewController {
         homeCollectionView.delegate = self
         homeCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
         
-        numberOfItemsLabel.text = "\(product.numberOfProducts()) items"
         // erase outline for search bar
         searchBar.backgroundImage = UIImage()
+    }
+    
+    // reload data and number of items label each time view appears
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        homeCollectionView.reloadData()
+        numberOfItemsLabel.text = "\(product.numberOfProducts()) items"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // send information to postDetailVC
+        if let postDetailVC = segue.destination as? ProductDetailViewController{
+            let selectedRow = homeCollectionView.indexPathsForSelectedItems!.first!.row
+            let selectedProduct = product.at(index: selectedRow)
+            postDetailVC.selectedImage = selectedProduct.image
+            postDetailVC.name = selectedProduct.name
+            postDetailVC.condition = selectedProduct.condition
+            postDetailVC.price = selectedProduct.price
+            postDetailVC.address = selectedProduct.address
+            postDetailVC.productUserId = selectedProduct.userId
+        }
     }
 }
 

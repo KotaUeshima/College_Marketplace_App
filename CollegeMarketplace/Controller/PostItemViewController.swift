@@ -7,9 +7,6 @@
 
 import UIKit
 import MapKit
-import FirebaseAuth
-import FirebaseFirestore
-import FirebaseStorage
 
 class PostItemViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, MKLocalSearchCompleterDelegate  {
     
@@ -31,15 +28,13 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
     
     var onComplete: (() -> Void)?
     
-    let userId = Auth.auth().currentUser?.uid
-    
     var completer = MKLocalSearchCompleter()
     
     var searchResults = [MKLocalSearchCompletion]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createInitialImage()
+        UIForSelectedImage()
         
         // hide error label
         errorLabel.alpha = 0
@@ -50,6 +45,7 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         priceTextField.delegate = self
         addressTextField.delegate = self
         conditionTextField.delegate = self
+        
         // disable button on load and change color
         submitButton.isEnabled = false
         submitButton.alpha = 0.5
@@ -67,18 +63,18 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         searchTableView.delegate = self
     }
     
+    // Triggered when new search is added
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         searchResults = completer.results
-        print("How many results is coming >>> \(completer.results.count)")
         searchTableView.reloadData()
     }
-    
+    // Triggered when completer has an error
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
         print("Error with auto completion")
         print(error)
     }
     
-    func createInitialImage(){
+    func UIForSelectedImage(){
         selectedImage.image = UIImage(systemName: "plus.circle")
         selectedImage.tintColor = .black
         selectedImage.layer.cornerRadius = 8
@@ -86,7 +82,7 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         selectedImage.layer.borderColor = UIColor.systemPink.cgColor
         selectedImage.contentMode = .center
     }
-    
+    // When Image Tapped, open up imagepicker
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         let imagePicker = UIImagePickerController()
@@ -95,7 +91,7 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         present(imagePicker, animated: true)
     }
     
-    // if user picks an image
+    // If User Pics an Image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let originalImage = info[.originalImage] as! UIImage
@@ -112,46 +108,22 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         let address = addressTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let condition = conditionTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        // upload photo
-        let storageRef = Storage.storage().reference()
-        let image = selectedImage.image?.jpegData(compressionQuality: 0.8)
-        let path = "images/\(UUID().uuidString).jpg"
-        let fileRef = storageRef.child(path)
-        let itemCollection = Firestore.firestore().collection("items")
-        
-        // upload to firestore storage
-        let uploadTask = fileRef.putData(image!, metadata: nil, completion: {(metadata, error) in
-            
-            if error == nil && metadata != nil{
-
+        // task allows asychronoziation within an IB Action
+        Task{
+            do{
+                try await ProductService.sharedInstance.postItem(name: name, price: price, address: address, condition: condition, image: selectedImage.image!)
+                onComplete?()
+                navigationController?.popViewController(animated: true)
+            }catch{
+                print("Could not post item")
+                print(error.localizedDescription)
             }
-            else{
-                print("Error uploading image")
-            }
-            
-        })
-        
-        let addition = Product(name: name, price: price, condition: condition, address: address, image: (selectedImage?.image)!, userId: userId!)
-        
-        ProductService.sharedInstance.insert(product: addition)
-        
-        // add document with imageUrl
-        itemCollection.addDocument(data: [
-            "userId": self.userId!,
-            "name": name,
-            "price": price,
-            "address": address,
-            "condition": condition,
-            "imageUrl": path
-        ])
-        
-        onComplete?()
-        navigationController?.popViewController(animated: true)
+        }
     }
     
-    // Enable or Disable Submit Button
+    // Triggered whenever text is entered
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        enableOrDisableButton()
+        enableOrDisableSubmitButton()
         
         // changing query for completer
         if textField == addressTextField{
@@ -168,7 +140,7 @@ class PostItemViewController: UIViewController, UINavigationControllerDelegate, 
         }
     }
     
-    func enableOrDisableButton(){
+    func enableOrDisableSubmitButton(){
         if !nameTextField.text!.isEmpty && !priceTextField.text!.isEmpty && !addressTextField.text!.isEmpty && !conditionTextField.text!.isEmpty{
             submitButton.isEnabled = true
             submitButton.alpha = 1

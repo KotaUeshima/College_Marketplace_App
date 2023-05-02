@@ -16,6 +16,9 @@
 		FB0397C729F1D27A00C27176 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0397C629F1D27A00C27176 /* UserService.swift */; };
 		FB0397C829F1D27A00C27176 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0397C629F1D27A00C27176 /* UserService.swift */; };
 		FB0397C929F1D27A00C27176 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0397C629F1D27A00C27176 /* UserService.swift */; };
+		FB24E3F729F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB24E3F629F37E7900EEDFC4 /* ProductDetailViewController.swift */; };
+		FB24E3F829F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB24E3F629F37E7900EEDFC4 /* ProductDetailViewController.swift */; };
+		FB24E3F929F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB24E3F629F37E7900EEDFC4 /* ProductDetailViewController.swift */; };
 		FB3A5E2929DCEA4F00B19907 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB3A5E2829DCEA4F00B19907 /* GoogleService-Info.plist */; };
 		FB3A5E2C29DCEE3900B19907 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = FB3A5E2B29DCEE3900B19907 /* FirebaseAuth */; };
 		FB3A5E2E29DCEE3900B19907 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB3A5E2D29DCEE3900B19907 /* FirebaseFirestoreSwift */; };
@@ -40,6 +43,16 @@
 		FBA8FC8629E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
 		FBA8FC8729E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
 		FBA8FC8829E4DEF40079F32F /* PostItemTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */; };
+		FBB4184429F8958E002522B3 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = FBB4184329F8958E002522B3 /* MessageKit */; };
+		FBB4184A29F896AB002522B3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4184929F896AB002522B3 /* ChatViewController.swift */; };
+		FBB4184B29F896AB002522B3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4184929F896AB002522B3 /* ChatViewController.swift */; };
+		FBB4184C29F896AB002522B3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4184929F896AB002522B3 /* ChatViewController.swift */; };
+		FBB4185229F899D3002522B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4185129F899D3002522B3 /* Message.swift */; };
+		FBB4185329F899D4002522B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4185129F899D3002522B3 /* Message.swift */; };
+		FBB4185429F899D4002522B3 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4185129F899D3002522B3 /* Message.swift */; };
+		FBB418562A018222002522B3 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB418552A018222002522B3 /* ChatService.swift */; };
+		FBB418572A018223002522B3 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB418552A018222002522B3 /* ChatService.swift */; };
+		FBB418582A018223002522B3 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB418552A018222002522B3 /* ChatService.swift */; };
 		FBB4D56129E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
 		FBB4D56229E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
 		FBB4D56329E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */; };
@@ -81,6 +94,7 @@
 		FB0397BE29E7580400C27176 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB0397C229F1D1DF00C27176 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FB0397C629F1D27A00C27176 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		FB24E3F629F37E7900EEDFC4 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		FB3A5E2829DCEA4F00B19907 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FB7ABDCF29DE3520000CB875 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FB8DDEA829DE482100D9C051 /* PostItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItemViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +104,9 @@
 		FB8DDEBA29E0955300D9C051 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		FB8DDEBE29E0E60500D9C051 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItemTextField.swift; sourceTree = "<group>"; };
+		FBB4184929F896AB002522B3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FBB4185129F899D3002522B3 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FBB418552A018222002522B3 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		FBE40A8D29DC8335003B45A3 /* CollegeMarketplace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegeMarketplace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE40A9029DC8335003B45A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +133,7 @@
 				FB3A5E2C29DCEE3900B19907 /* FirebaseAuth in Frameworks */,
 				FB3A5E2E29DCEE3900B19907 /* FirebaseFirestoreSwift in Frameworks */,
 				FB3A5E3029DCEE3900B19907 /* FirebaseStorage in Frameworks */,
+				FBB4184429F8958E002522B3 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +223,8 @@
 				FBA8FC8529E4DEF40079F32F /* PostItemTextField.swift */,
 				FB0397C229F1D1DF00C27176 /* User.swift */,
 				FB0397C629F1D27A00C27176 /* UserService.swift */,
+				FBB4185129F899D3002522B3 /* Message.swift */,
+				FBB418552A018222002522B3 /* ChatService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +248,8 @@
 				FB7ABDCF29DE3520000CB875 /* ProfileViewController.swift */,
 				FB8DDEA829DE482100D9C051 /* PostItemViewController.swift */,
 				FBB4D56029E5EEEF00DE3A31 /* PostDetailViewController.swift */,
+				FB24E3F629F37E7900EEDFC4 /* ProductDetailViewController.swift */,
+				FBB4184929F896AB002522B3 /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -262,6 +284,7 @@
 				FB3A5E2B29DCEE3900B19907 /* FirebaseAuth */,
 				FB3A5E2D29DCEE3900B19907 /* FirebaseFirestoreSwift */,
 				FB3A5E2F29DCEE3900B19907 /* FirebaseStorage */,
+				FBB4184329F8958E002522B3 /* MessageKit */,
 			);
 			productName = CollegeMarketplace;
 			productReference = FBE40A8D29DC8335003B45A3 /* CollegeMarketplace.app */;
@@ -337,6 +360,7 @@
 			mainGroup = FBE40A8429DC8335003B45A3;
 			packageReferences = (
 				FB3A5E2A29DCEE3900B19907 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FBB4184229F8958D002522B3 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = FBE40A8E29DC8335003B45A3 /* Products */;
 			projectDirPath = "";
@@ -393,12 +417,16 @@
 				FBA8FC8629E4DEF40079F32F /* PostItemTextField.swift in Sources */,
 				FB8DDEB129DF3C6100D9C051 /* Product.swift in Sources */,
 				FB8DDEAD29DF387300D9C051 /* ProductCollectionViewCell.swift in Sources */,
+				FB24E3F729F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */,
 				FBE40AC929DCBEE3003B45A3 /* HomeViewController.swift in Sources */,
 				FBE40A9529DC8335003B45A3 /* ViewController.swift in Sources */,
 				FB8DDEBF29E0E60500D9C051 /* CustomButton.swift in Sources */,
+				FBB4185229F899D3002522B3 /* Message.swift in Sources */,
 				FBE40A9129DC8335003B45A3 /* AppDelegate.swift in Sources */,
 				FBE40AC529DCB951003B45A3 /* SignUpViewController.swift in Sources */,
+				FBB4184A29F896AB002522B3 /* ChatViewController.swift in Sources */,
 				FBE40A9329DC8335003B45A3 /* SceneDelegate.swift in Sources */,
+				FBB418562A018222002522B3 /* ChatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,13 +436,17 @@
 			files = (
 				FB8DDEBC29E0955300D9C051 /* CustomTextField.swift in Sources */,
 				FBE40AC629DCB951003B45A3 /* SignUpViewController.swift in Sources */,
+				FBB4184B29F896AB002522B3 /* ChatViewController.swift in Sources */,
+				FBB4185329F899D4002522B3 /* Message.swift in Sources */,
 				FBA8FC8729E4DEF40079F32F /* PostItemTextField.swift in Sources */,
+				FBB418572A018223002522B3 /* ChatService.swift in Sources */,
 				FBE40AA829DC8338003B45A3 /* CollegeMarketplaceTests.swift in Sources */,
 				FB8DDEAA29DE482100D9C051 /* PostItemViewController.swift in Sources */,
 				FB8DDEC029E0E60500D9C051 /* CustomButton.swift in Sources */,
 				FB0397C829F1D27A00C27176 /* UserService.swift in Sources */,
 				FB0397C029E7580400C27176 /* HomeCollectionViewCell.swift in Sources */,
 				FB7ABDD129DE3520000CB875 /* ProfileViewController.swift in Sources */,
+				FB24E3F829F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */,
 				FB0397C429F1D1DF00C27176 /* User.swift in Sources */,
 				FBB4D56229E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */,
 				FB8DDEAE29DF387300D9C051 /* ProductCollectionViewCell.swift in Sources */,
@@ -428,13 +460,17 @@
 			files = (
 				FB0397C929F1D27A00C27176 /* UserService.swift in Sources */,
 				FB0397C529F1D1DF00C27176 /* User.swift in Sources */,
+				FB24E3F929F37E7900EEDFC4 /* ProductDetailViewController.swift in Sources */,
 				FBE40AC729DCB951003B45A3 /* SignUpViewController.swift in Sources */,
 				FBE40AB429DC8338003B45A3 /* CollegeMarketplaceUITestsLaunchTests.swift in Sources */,
+				FBB418582A018223002522B3 /* ChatService.swift in Sources */,
 				FBA8FC8829E4DEF40079F32F /* PostItemTextField.swift in Sources */,
+				FBB4185429F899D4002522B3 /* Message.swift in Sources */,
 				FBB4D56329E5EEEF00DE3A31 /* PostDetailViewController.swift in Sources */,
 				FB8DDEC129E0E60500D9C051 /* CustomButton.swift in Sources */,
 				FB8DDEAF29DF387300D9C051 /* ProductCollectionViewCell.swift in Sources */,
 				FB7ABDD229DE3520000CB875 /* ProfileViewController.swift in Sources */,
+				FBB4184C29F896AB002522B3 /* ChatViewController.swift in Sources */,
 				FB8DDEBD29E0955300D9C051 /* CustomTextField.swift in Sources */,
 				FB8DDEAB29DE482100D9C051 /* PostItemViewController.swift in Sources */,
 				FBE40AB229DC8338003B45A3 /* CollegeMarketplaceUITests.swift in Sources */,
@@ -770,6 +806,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		FBB4184229F8958D002522B3 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -787,6 +831,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FB3A5E2A29DCEE3900B19907 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		FBB4184329F8958E002522B3 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBB4184229F8958D002522B3 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -27,6 +27,7 @@ class PostDetailViewController: UIViewController{
     @IBOutlet weak var addressLabel: UILabel!
     
     override func viewDidLoad(){
+        super.viewDidLoad()
         
         if let selectedImage = selectedImage{
             productImage.image = selectedImage

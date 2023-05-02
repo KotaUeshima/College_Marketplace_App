@@ -23,6 +23,11 @@ class ProductService{
         allProducts = []
     }
     
+    func clearAllProducts(){
+        userProducts = []
+        allProducts = []
+    }
+    
     func numberOfUserProducts() -> Int{
         return userProducts.count
     }
@@ -87,8 +92,38 @@ class ProductService{
                 }
             }
         }
-        
         onSuccess(self.allProducts)
+    }
+    
+    func postItem(name: String, price: String, address: String, condition: String, image: UIImage) async throws{
+        
+        // Add Image 
+        let storageRef = Storage.storage().reference()
+        let jpegImage = image.jpegData(compressionQuality: 0.8)!
+        let path = "images/\(UUID().uuidString).jpg"
+        let fileRef = storageRef.child(path)
+        
+        fileRef.putData(jpegImage, metadata: nil, completion: {(metadata, error) in
+            if error != nil{
+                print("Error uploading image to Firebase")
+                print(error!.localizedDescription)
+            }
+        })
+        
+        // Add Document to Firebase Firestore
+        let itemCollection = Firestore.firestore().collection("items")
+        let userId = UserService.sharedInstance.getUserId()
+        itemCollection.addDocument(data: [
+            "userId": userId,
+            "name": name,
+            "price": price,
+            "address": address,
+            "condition": condition,
+            "imageUrl": path
+        ])
+        // Add Document locally to product service
+        let addition = Product(name: name, price: price, condition: condition, address: address, image: image, userId: userId)
+        insert(product: addition)
     }
     
     func search(search: String){

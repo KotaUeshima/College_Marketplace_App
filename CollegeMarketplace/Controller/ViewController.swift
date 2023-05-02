@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 // This is the LoginViewController not sure how to change name
 class ViewController: UIViewController, UITextFieldDelegate{
