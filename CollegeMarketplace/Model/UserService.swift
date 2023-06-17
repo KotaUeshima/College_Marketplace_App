@@ -27,6 +27,7 @@ class UserService{
         return "\(currentUser!.firstName) \(currentUser!.lastName)"
     }
     
+    // use async await syntax to login user
     func login(email: String, password: String) async throws {
         let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
         let userId = authResult.user.uid
@@ -40,6 +41,7 @@ class UserService{
         }
     }
     
+    // using async await syntax to create account
     func createAccount(firstName: String, lastName: String, email: String, password: String) async throws{
         let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
         let userId = authResult.user.uid

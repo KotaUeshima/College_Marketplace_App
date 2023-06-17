@@ -33,6 +33,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesDi
         messagesCollectionView.reloadData()
     }
 
+    // delegatee methods for messageCollectionView
     var currentSender: SenderType {
         return sharedChat.currentSender()
     }

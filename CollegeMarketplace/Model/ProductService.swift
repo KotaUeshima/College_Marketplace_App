@@ -36,6 +36,7 @@ class ProductService{
         return userProducts[index]
     }
     
+    // filter user products based on currently logged in userid
     func getUserProducts(onSuccess: @escaping ([Product]) -> Void){
         userProducts = allProducts.filter { product in
             product.userId == UserService.sharedInstance.getUserId()
@@ -55,6 +56,7 @@ class ProductService{
         allProducts.append(product)
     }
     
+    // grab all products, will be called when user logs in
     func getAllProducts(onSuccess: @escaping ([Product]) -> Void){
         let itemsCollection = Firestore.firestore().collection("items")
         itemsCollection.getDocuments { (snapshot, error) in

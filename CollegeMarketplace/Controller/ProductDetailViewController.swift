@@ -54,6 +54,7 @@ class ProductDetailViewController: UIViewController{
         }
     }
     
+    // create a marker on map based on the product location
     func setUpMap(){
         let geocoder = CLGeocoder()
         
@@ -76,6 +77,7 @@ class ProductDetailViewController: UIViewController{
         }
     }
     
+    // center the map, when user enters view controller
     func centerMapOnLocation(_ location: CLLocation, mapView: MKMapView) {
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
@@ -83,6 +85,7 @@ class ProductDetailViewController: UIViewController{
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    // call upload messages function in chatService, if button for send messages is clicked
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chatVC = segue.destination as? ChatViewController{
             Task {

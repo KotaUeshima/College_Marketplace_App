@@ -40,6 +40,7 @@ class ChatService{
         }
     }
     
+    // get chat id from firebase given userId and otherUserId
     func getChatId(otherUserId: String) async throws -> String {
         let userId = UserService.sharedInstance.getUserId()
         let chatsCollection = Firestore.firestore().collection("chats")
@@ -56,6 +57,7 @@ class ChatService{
         return "how did it miss the catch block"
     }
     
+    // get messages that have the given chatId and store in messages variable
     func getMessages(chatId: String){
         let messagesCollection = Firestore.firestore().collection("messages")
         

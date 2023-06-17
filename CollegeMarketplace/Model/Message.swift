@@ -8,6 +8,7 @@
 import Foundation
 import MessageKit
 
+// struct for MessageKit messages
 struct Message: MessageType{
     var sender: SenderType
     var messageId: String
